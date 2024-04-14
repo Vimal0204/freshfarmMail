@@ -7,14 +7,12 @@ import com.freshFarmMail.com.demo.model.EmailFarmerOrderReceived;
 import com.freshFarmMail.com.demo.model.EmailMessageWelcome;
 
 public interface EmailService {
-//    void sendEmail(String to, String subject, String message);
-//    public boolean sendEmail(String subject,String message,String to);
 
-    boolean sendEmailWelcome(EmailMessageWelcome emailMessageWelcome);
+    boolean sendEmailWelcome(EmailMessageWelcome emailMessageWelcome,String pass);
 
-    boolean sendEmailCustomerOrderConfirmed(EmailCustomerOrderConfirmed emailMessage);
+    boolean sendEmailCustomerOrderConfirmed(EmailCustomerOrderConfirmed emailMessage,String pass);
 
-    boolean sendCustomerOrderCancel(EmailCustomerCancelOrder emailMessage);
+    boolean sendCustomerOrderCancel(EmailCustomerCancelOrder emailMessage,String pass);
 
-    boolean sendFarmerOrderReceived(EmailFarmerOrderReceived emailMessage);
+    boolean sendFarmerOrderReceived(EmailFarmerOrderReceived emailMessage,String pass);
 }
