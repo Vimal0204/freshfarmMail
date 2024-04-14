@@ -35,7 +35,7 @@ public class EmailServiceImpl implements EmailService{
 //                Session session=Session.getInstance(properties, new Authenticator() {
 //                        @Override
 //                        protected PasswordAuthentication getPasswordAuthentication() {
-//                                return new PasswordAuthentication("freshfarmv@gmail.com", "cfwawtjgjtyolviu");
+//                                return new PasswordAuthentication("freshfarmv@gmail.com", ${{ secrets.GMAIL_PASSWORD}});
 //                        }
 //
 //
@@ -116,7 +116,7 @@ public class EmailServiceImpl implements EmailService{
                         Session session=Session.getInstance(properties, new Authenticator() {
                                 @Override
                                 protected PasswordAuthentication getPasswordAuthentication() {
-                                        return new PasswordAuthentication("freshfarmv@gmail.com", "cfwawtjgjtyolviu");
+                                        return new PasswordAuthentication("freshfarmv@gmail.com", ${{ secrets.GMAIL_PASSWORD}});
                                 }
 
 
@@ -191,7 +191,7 @@ public class EmailServiceImpl implements EmailService{
                 Session session=Session.getInstance(properties, new Authenticator() {
                         @Override
                         protected PasswordAuthentication getPasswordAuthentication() {
-                                return new PasswordAuthentication("freshfarmv@gmail.com", "cfwawtjgjtyolviu");
+                                return new PasswordAuthentication("freshfarmv@gmail.com", ${{ secrets.GMAIL_PASSWORD}});
                         }
 
 
@@ -267,7 +267,7 @@ public class EmailServiceImpl implements EmailService{
                 Session session=Session.getInstance(properties, new Authenticator() {
                         @Override
                         protected PasswordAuthentication getPasswordAuthentication() {
-                                return new PasswordAuthentication("freshfarmv@gmail.com", "cfwawtjgjtyolviu");
+                                return new PasswordAuthentication("freshfarmv@gmail.com", ${{ secrets.GMAIL_PASSWORD}});
                         }
 
 
@@ -345,7 +345,7 @@ public class EmailServiceImpl implements EmailService{
                 Session session=Session.getInstance(properties, new Authenticator() {
                         @Override
                         protected PasswordAuthentication getPasswordAuthentication() {
-                                return new PasswordAuthentication("freshfarmv@gmail.com", "cfwawtjgjtyolviu");
+                                return new PasswordAuthentication("freshfarmv@gmail.com", ${{ secrets.GMAIL_PASSWORD}});
                         }
 
 
