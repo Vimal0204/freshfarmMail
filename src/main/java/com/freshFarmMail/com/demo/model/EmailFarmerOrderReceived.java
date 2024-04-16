@@ -4,19 +4,21 @@ public class EmailFarmerOrderReceived {
     private String to;
     private  String subject="New Order Received";
     private int orderId;
-    private int totalItem;
-    private double totalAmount;
+    private int quantity;
+    private int customerId;
+    private double Amount;
     private String paymentMethod;
 
     public EmailFarmerOrderReceived() {
     }
 
-    public EmailFarmerOrderReceived(String to, int orderId, int totalItem, double totalAmount, String paymentMethod) {
+    public EmailFarmerOrderReceived(String to, int orderId, int quantity, double amount, String paymentMethod,int customerId) {
         this.to = to;
         this.orderId = orderId;
-        this.totalItem = totalItem;
-        this.totalAmount = totalAmount;
+        this.quantity = quantity;
+        this.Amount = amount;
         this.paymentMethod = paymentMethod;
+        this.customerId=customerId;
     }
 
     public String getTo() {
@@ -39,20 +41,29 @@ public class EmailFarmerOrderReceived {
         this.orderId = orderId;
     }
 
-    public int getTotalItem() {
-        return totalItem;
+
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setTotalItem(int totalItem) {
-        this.totalItem = totalItem;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public double getTotalAmount() {
-        return totalAmount;
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public void setTotalAmount(double totalAmount) {
-        this.totalAmount = totalAmount;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
+
+    public double getAmount() {
+        return Amount;
+    }
+
+    public void setAmount(double amount) {
+        Amount = amount;
     }
 
     public String getPaymentMethod() {
@@ -67,9 +78,11 @@ public class EmailFarmerOrderReceived {
     public String toString() {
         return "EmailFarmerOrderReceived{" +
                 "to='" + to + '\'' +
+                ", subject='" + subject + '\'' +
                 ", orderId=" + orderId +
-                ", totalItem=" + totalItem +
-                ", totalAmount=" + totalAmount +
+                ", quantity=" + quantity +
+                ", customerId=" + customerId +
+                ", Amount=" + Amount +
                 ", paymentMethod='" + paymentMethod + '\'' +
                 '}';
     }
