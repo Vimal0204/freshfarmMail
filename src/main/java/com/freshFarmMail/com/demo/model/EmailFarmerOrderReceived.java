@@ -12,11 +12,11 @@ public class EmailFarmerOrderReceived {
     public EmailFarmerOrderReceived() {
     }
 
-    public EmailFarmerOrderReceived(String to, int orderId, int quantity, double amount, String paymentMethod,int customerId) {
+    public EmailFarmerOrderReceived(String to, int orderId, int quantity, double Amount, String paymentMethod,int customerId) {
         this.to = to;
         this.orderId = orderId;
         this.quantity = quantity;
-        this.Amount = amount;
+        this.Amount = Amount;
         this.paymentMethod = paymentMethod;
         this.customerId=customerId;
     }
