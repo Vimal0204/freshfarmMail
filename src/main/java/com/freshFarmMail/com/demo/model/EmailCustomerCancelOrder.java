@@ -74,7 +74,7 @@ public class EmailCustomerCancelOrder {
                 ", customerName='" + customerName + '\'' +
                 ", orderId=" + orderId +
                 ", quantity=" + quantity +
-                ", totalAmount=" + totalAmount + '\'' +
+                ", totalAmount =" + totalAmount + '\'' +
                 '}';
     }
 }
