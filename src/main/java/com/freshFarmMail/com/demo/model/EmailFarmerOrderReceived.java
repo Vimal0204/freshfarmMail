@@ -2,7 +2,6 @@ package com.freshFarmMail.com.demo.model;
 
 public class EmailFarmerOrderReceived {
     private String to;
-    private String farmerName;
     private  String subject="New Order Received";
     private int orderId;
     private int totalItem;
@@ -12,9 +11,8 @@ public class EmailFarmerOrderReceived {
     public EmailFarmerOrderReceived() {
     }
 
-    public EmailFarmerOrderReceived(String to, String farmerName, int orderId, int totalItem, double totalAmount, String paymentMethod) {
+    public EmailFarmerOrderReceived(String to, int orderId, int totalItem, double totalAmount, String paymentMethod) {
         this.to = to;
-        this.farmerName = farmerName;
         this.orderId = orderId;
         this.totalItem = totalItem;
         this.totalAmount = totalAmount;
@@ -27,14 +25,6 @@ public class EmailFarmerOrderReceived {
 
     public void setTo(String to) {
         this.to = to;
-    }
-
-    public String getFarmerName() {
-        return farmerName;
-    }
-
-    public void setFarmerName(String farmerName) {
-        this.farmerName = farmerName;
     }
 
     public String getSubject() {
@@ -77,7 +67,6 @@ public class EmailFarmerOrderReceived {
     public String toString() {
         return "EmailFarmerOrderReceived{" +
                 "to='" + to + '\'' +
-                ", farmerName='" + farmerName + '\'' +
                 ", orderId=" + orderId +
                 ", totalItem=" + totalItem +
                 ", totalAmount=" + totalAmount +

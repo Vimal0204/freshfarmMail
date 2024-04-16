@@ -1,9 +1,6 @@
 package com.freshFarmMail.com.demo.service;
 
-import com.freshFarmMail.com.demo.model.EmailCustomerCancelOrder;
-import com.freshFarmMail.com.demo.model.EmailCustomerOrderConfirmed;
-import com.freshFarmMail.com.demo.model.EmailFarmerOrderReceived;
-import com.freshFarmMail.com.demo.model.EmailMessageWelcome;
+import com.freshFarmMail.com.demo.model.*;
 import org.springframework.stereotype.Service;
 
 import javax.mail.*;
@@ -101,7 +98,6 @@ public class EmailServiceImpl implements EmailService{
                 String to=emailMessage.getTo();
                 String message = "Dear "+emailMessage.getCustomerName()+",\n\n"
                         + "We're excited to inform you that your order has been confirmed. Here are the details:\n\n"
-                        + "- Order ID: "+emailMessage.getOrderId()+"\n"
                         + "- Total Items: "+emailMessage.getTotalItem()+"\n"
                         + "- Total Amount: "+emailMessage.getTotalAmount()+"\n"
                         + "- Payment Method: "+emailMessage.getPaymentMethod()+"\n\n"
@@ -173,13 +169,13 @@ public class EmailServiceImpl implements EmailService{
         public boolean sendCustomerOrderCancel(EmailCustomerCancelOrder emailMessage,String pass){
                 String subject=emailMessage.getSubject();
                 String to=emailMessage.getTo();
-                String message = "Subject: Order Cancellation Confirmation\n\n"
-                        + "Dear "+emailMessage.getCustomerName()+",\n\n"
+                String message = "Dear "+emailMessage.getCustomerName()+",\n\n"
                         + "We regret to inform you that your order has been canceled. Here are the details:\n\n"
                         + "- Order ID: "+emailMessage.getOrderId()+"\n"
-                        + "- Total Items: "+emailMessage.getTotalItem()+"\n"
-                        + "- Payment Method: "+emailMessage.getPaymentMethod()+"\n"
-                        + "- Refund Status: "+emailMessage.getRefundStatus()+"\n\n"
+                        + "- Quantity: "+emailMessage.getQuantity()+"\n"
+                        + "- Refund Amount: "+emailMessage.getTotalAmount()+"\n"
+                        +"If you have done online payment,Your refund will initiate and will be refunded in 5-7 working days.\n" +
+                        "If you have chose Cash on Delivery as the payment method, no refund is required.\n\n"
                         + "If you have canceled this order by mistake or if you need further assistance, please feel free to reach out to us at freshfarmv@gmail.com \n Our support team will be happy to assist you.\n\n"
                         + "We apologize for any inconvenience caused and hope to serve you better in the future.\n\n"
                         + "Best regards,\n"
@@ -250,7 +246,7 @@ public class EmailServiceImpl implements EmailService{
         public boolean sendFarmerOrderReceived(EmailFarmerOrderReceived emailMessage,String pass) {
                 String subject=emailMessage.getSubject();
                 String to=emailMessage.getTo();
-                String message = "Dear "+emailMessage.getFarmerName()+",\n\n"
+                String message = "Dear Merchant,\n"
                         + "We're excited to inform you that you have received a new order. Here are the details:\n\n"
                         + "- Order ID: "+emailMessage.getOrderId()+"\n"
                         + "- Total Items: "+emailMessage.getTotalItem()+"\n"
@@ -283,6 +279,85 @@ public class EmailServiceImpl implements EmailService{
                         @Override
                         protected PasswordAuthentication getPasswordAuthentication() {
                                 return new PasswordAuthentication("freshfarmv@gmail.com",pass);
+                        }
+
+
+
+                });
+
+                session.setDebug(true);
+
+                //Step 2 : compose the message [text,multi media]
+                MimeMessage m = new MimeMessage(session);
+
+                try {
+
+                        //from email
+                        m.setFrom(from);
+
+                        //adding recipient to message
+                        m.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+
+                        //adding subject to message
+                        m.setSubject(subject);
+
+
+                        //adding text to message
+                        m.setText(message);
+
+                        //send
+
+                        //Step 3 : send the message using Transport class
+                        Transport.send(m);
+
+                        System.out.println("Sent success...................");
+                        f=true;
+
+
+                }catch (Exception e) {
+                        e.printStackTrace();
+                }
+                return f;
+        }
+
+        @Override
+        public boolean sendFarmerOrderCancel(EmailFarmerOrderCancel emailMessage, String passing) {
+                String subject=emailMessage.getSubject();
+                String to=emailMessage.getTo();
+                String message = "Dear Merchant,\n\n"
+                        + "We regret to inform you that the following order has been canceled by the buyer:\n\n"
+                        + "- Order ID: "+emailMessage.getOrderId() +"\n"
+                        + "- Quantity: "+emailMessage.getQuantity()+"\n"
+                        + "- Total Amount: "+emailMessage.getTotalAmount()+"\n\n"
+                        + "As the order has been canceled, there's no need to proceed with preparing the items for shipment. The buyer has been notified of the cancellation.\n\n"
+                        + "If you have any questions or need further assistance regarding this cancellation, please don't hesitate to contact us at freshfarmv@gmail.com. Our support team is here to help.\n\n"
+                        + "We apologize for any inconvenience caused and appreciate your understanding.\n\n"
+                        + "Best regards,\n"
+                        + "The Fresh Farm Team";
+
+
+
+                boolean f=false;
+                String host="smtp.gmail.com";
+                String from="freshfarmv@gmail.com";
+
+                //get the system properties
+                Properties properties = System.getProperties();
+                System.out.println("PROPERTIES "+properties);
+
+                //setting important information to properties object
+
+                //host set
+                properties.put("mail.smtp.host", host);
+                properties.put("mail.smtp.port","465");
+                properties.put("mail.smtp.ssl.enable","true");
+                properties.put("mail.smtp.auth","true");
+
+                //Step 1: to get the session object..
+                Session session=Session.getInstance(properties, new Authenticator() {
+                        @Override
+                        protected PasswordAuthentication getPasswordAuthentication() {
+                                return new PasswordAuthentication("freshfarmv@gmail.com",passing);
                         }
 
 

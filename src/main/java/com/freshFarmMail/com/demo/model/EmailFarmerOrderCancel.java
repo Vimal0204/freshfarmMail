@@ -1,25 +1,26 @@
 package com.freshFarmMail.com.demo.model;
 
-public class EmailCustomerCancelOrder {
+public class EmailFarmerOrderCancel {
     private String to;
-    private String customerName;
-    private  String subject="Order Cancellation Confirmation";
+    private  String subject="Order Cancellation";
     private int orderId;
     private int quantity;
     private double totalAmount;
 
-
-    public EmailCustomerCancelOrder() {
+    public EmailFarmerOrderCancel() {
     }
 
-    public EmailCustomerCancelOrder(String to, String customerName, int orderId, int quantity, double totalAmount) {
+    public EmailFarmerOrderCancel(String to, int orderId, int quantity, double totalAmount) {
         this.to = to;
-        this.customerName = customerName;
         this.orderId = orderId;
         this.quantity = quantity;
         this.totalAmount = totalAmount;
-
     }
+
+    public String getSubject() {
+        return subject;
+    }
+
 
     public String getTo() {
         return to;
@@ -29,18 +30,6 @@ public class EmailCustomerCancelOrder {
         this.to = to;
     }
 
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
-    public String getSubject() {
-        return subject;
-    }
-
     public int getOrderId() {
         return orderId;
     }
@@ -48,7 +37,6 @@ public class EmailCustomerCancelOrder {
     public void setOrderId(int orderId) {
         this.orderId = orderId;
     }
-
 
     public int getQuantity() {
         return quantity;
@@ -66,15 +54,14 @@ public class EmailCustomerCancelOrder {
         this.totalAmount = totalAmount;
     }
 
-
     @Override
     public String toString() {
-        return "EmailCustomerCancelOrder{" +
+        return "EmailFarmerOrderCancel{" +
                 "to='" + to + '\'' +
-                ", customerName='" + customerName + '\'' +
+                ", subject='" + subject + '\'' +
                 ", orderId=" + orderId +
                 ", quantity=" + quantity +
-                ", totalAmount=" + totalAmount + '\'' +
+                ", totalAmount=" + totalAmount +
                 '}';
     }
 }
